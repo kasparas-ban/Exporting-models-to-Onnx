@@ -29,6 +29,8 @@ RuntimeError: state_dict changed after running the tracer; something weird is ha
 
 For some reason PyTorch fails to export the model, that otherwise is fully functional.
 
+If the blocks are not swapped, the network is exported successfully.
+
 # To reproduce the error
 
 To get the same error, run `export_model.py` file.
@@ -36,5 +38,7 @@ To get the same error, run `export_model.py` file.
 # Environment
 
 PyTorch Version : 1.2.0
+
 OS: Ubuntu
+
 Python version: 3.7.3
