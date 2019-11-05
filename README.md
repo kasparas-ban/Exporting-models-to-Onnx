@@ -1,5 +1,4 @@
 # Exporting-models-to-Onnx
-A temporary repository that shows an error in a PyTorch-to-Onnx exporting function
 
 We are trying to export a model created in PyTorch to Onnx. The model is created with function:
 ```
