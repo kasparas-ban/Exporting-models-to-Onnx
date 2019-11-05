@@ -27,35 +27,16 @@ string_to_conv = {
     'G2B2' :     G2B2
 }
 
-def update_model(model, convs):
-    convs = str(convs)[1:-1].rstrip().replace(',', '')
-    cs = convs.replace('\n', ' ').split()
-    prefix = len("'models.blocks.")
-    suffix = len("'>")
+# --- Create a model -----------------------------------------------------------
 
-    r = [w for w in cs if '<class' not in w]
-    blocks = [c[prefix:-suffix] for c in r]
-    convs  = [string_to_conv[c] for c in blocks]
+model = WideResNet(40, 2, Conv, BasicBlock)
 
-    for i, c in enumerate(convs):
-        model = update_block(i, model, c)
-
-    return model, blocks
-
-# --- Load a model -----------------------------------------------------------
-
-directory = 'random_models.csv'
-in_file = open(directory)
-data = pd.read_csv(in_file)
-
-net = WideResNet(40, 2, Conv, BasicBlock)
-net, _ = update_model(net, data['convs'][0])
+# Take a random block (block 0 in this case), and replace it
+# with any other block (G2B2 in this case)
+model = update_block(0, model, string_to_conv['G2B2'])
 
 # --- Export PyTorch model to Onnx -------------------------------------------
 
-onnx_models = dict()
 torch_input = Variable(torch.rand(1, 3, 32, 32))
-
-# export to onnx
 save_name = 'test_model.onnx'
-torch.onnx.export(net, torch_input, save_name)   # <- GIVES ERROR
+torch.onnx.export(model, torch_input, save_name)   # <- GIVES ERROR
