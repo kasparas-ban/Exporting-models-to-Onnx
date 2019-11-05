@@ -2,7 +2,7 @@
 
 We are trying to export a model created in PyTorch to Onnx. The model is created with function:
 ```
-net = WideResNet(40, 2, Conv, BasicBlock)
+model = WideResNet(40, 2, Conv, BasicBlock)
 ```
 and then, one convolutional block of that model is swapped with a different kind of block, like so:
 ```
