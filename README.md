@@ -1,6 +1,6 @@
 # Code layout
 - `blocks.py` gives the definitions and convolutions for the blocks
-- `wide_resnet.py` gives the definition of te wide residual network that is being used in this example
+- `wide_resnet.py` gives the definition of the wide residual network that is being used in this example
 - `export_model.py` creates a network, updates one block of that network and attempts to export it to Onnx
 
 # Exporting updated models to Onnx
