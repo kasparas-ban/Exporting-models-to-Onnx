@@ -8,7 +8,12 @@ and then, one convolutional block of that model is swapped with a different kind
 ```
 model = update_block(block_number, model, block_type)
 ```
-The following error occurs:
+In the particular example that is provided in the code, we exchange the first block (block_number=0) with another block of type G2B2.
+We try to export this updated model with
+```
+torch.onnx.export(model, torch_input, save_name)
+```
+but the following error occurs:
 ```
 Traceback (most recent call last):
   File "export_model.py", line 42, in <module>
